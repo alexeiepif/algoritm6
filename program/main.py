@@ -1,4 +1,14 @@
 import random as rnd
+import matplotlib.pyplot as plt
+
+
+def plot_segments(point, s, k, coef):
+    for i in s:
+        d = [k, k]
+        plt.scatter(point, [0 for _ in range(len(point))], s=15, color="red")
+        plt.plot(i, d, color="blue")
+        k += coef
+    plt.show()
 
 
 def pointscover1(s):
@@ -28,7 +38,7 @@ def pointscover2(s):
     return segment
 
 
-s = [rnd.randint(0, 30) for i in range(10)]
+s = [rnd.randint(0, 100)/10 for i in range(20)]
 s2 = s.copy()
 print("Множество точек:", s)
 seg = pointscover1(s)
@@ -36,3 +46,4 @@ print("Множество отрезков:", seg)
 s = s2
 seg = pointscover2(s)
 print("Множество отрезков 2:", seg)
+plot_segments(s2, seg, 0, 0)
