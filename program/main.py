@@ -5,9 +5,10 @@ import matplotlib.pyplot as plt
 def plot_segments(point, s, k, coef):
     for i in s:
         d = [k, k]
-        plt.scatter(point, [0 for _ in range(len(point))], s=15, color="red")
-        plt.plot(i, d, color="blue")
+        plt.plot(i, d, color="blue", linewidth=40, solid_capstyle='butt')
         k += coef
+    plt.plot(point, [0 for _ in range(len(point))], linestyle='None',
+             marker='|', markersize=60, color="red")
     plt.show()
 
 
