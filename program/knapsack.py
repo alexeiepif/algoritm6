@@ -27,9 +27,13 @@ def fractional_knapsack(items, capacity):
 n = 10
 items_mas = [[i, random.randint(1, 100), random.randint(3, 20)]
              for i in range(n)]
-
-print("Матрица:")
-print(np.matrix(items_mas))
+r = 10
+print("│ {:^{r}} │ {:^{r}} │ {:^{r}} │".format(
+    'Элемент', 'Стоимость', 'Вес', r=r))
+for i, j, k in items_mas:
+    print("├{:─^{r}}┼{:─^{r}}┼{:─^{r}}┤".format('', '', '', r=r+2))
+    print("│ {:^{r}} │ {:^{r}} │ {:^{r}} │".format(
+        i, j, k, r=r))
 
 capacity = 30
 
@@ -46,54 +50,36 @@ ax.add_patch(patches.Rectangle((0, -0.5), capacity, 1, facecolor='gray'))
 k = 0
 y = 0.5
 
+cen = {'verticalalignment': 'center', 'horizontalalignment': 'center'}
+top = {'verticalalignment': 'top', 'horizontalalignment': 'center'}
+bottom = {'verticalalignment': 'bottom', 'horizontalalignment': 'center'}
+
+
 for i, value, weight in items_mas:
     if i in solution:
         ax.add_patch(patches.Rectangle((k, y), weight, 1))
-        ax.text(k + weight / 2, 1, str(value),
-                verticalalignment='center',
-                horizontalalignment='center')
+        ax.text(k + weight / 2, 1, str(value), **cen)
         if solution[i] == weight:
-            ax.text(k + weight / 2, -0.5, str(solution[i]),
-                    verticalalignment='top',
-                    horizontalalignment='center')
-            ax.text(k + weight / 2, 0, str(value),
-                    verticalalignment='center',
-                    horizontalalignment='center')
+            ax.text(k + weight / 2, -0.5, str(solution[i]), **top)
+            ax.text(k + weight / 2, 0, str(value), **cen)
         else:
-            ax.text((capacity + k)/2, -0.5, str(solution[i]),
-                    verticalalignment='top',
-                    horizontalalignment='center')
-            ax.text((capacity + k)/2, 0, f"{value/weight* solution[i]:.2f}",
-                    verticalalignment='center',
-                    horizontalalignment='center')
+            ax.text((capacity + k)/2, -0.5, str(solution[i]), **top)
+            ax.text((capacity + k)/2, 0,
+                    f"{value/weight * solution[i]:.2f}", **cen)
 
-        ax.text(k + weight / 2, 2, str(i),
-                verticalalignment='bottom',
-                horizontalalignment='center')
-        ax.text(k + weight / 2, 1.5, str(weight),
-                verticalalignment='bottom',
-                horizontalalignment='center')
+        ax.text(k + weight / 2, 2, str(i), **bottom)
+        ax.text(k + weight / 2, 1.5, str(weight), **bottom)
         if k > 0:  # не
 
             ax.axvline(x=k, ymin=0, ymax=2, color='red')
         k += weight
 
 
-ax.text(-10, 2, "Элементы",
-        verticalalignment='bottom',
-        horizontalalignment='center')
-ax.text(-10, 1.5, "Вес",
-        verticalalignment='bottom',
-        horizontalalignment='center')
-ax.text(-10, 1, "Цена",
-        verticalalignment='center',
-        horizontalalignment='center')
-ax.text(-10, 0, "Цена в рюкзаке",
-        verticalalignment='center',
-        horizontalalignment='center')
-ax.text(-10, -0.5, "Вес в рюкзаке",
-        verticalalignment='top',
-        horizontalalignment='center')
+ax.text(-10, 2, "Элементы", **bottom)
+ax.text(-10, 1.5, "Вес", **bottom)
+ax.text(-10, 1, "Цена", **cen)
+ax.text(-10, 0, "Цена в рюкзаке", **cen)
+ax.text(-10, -0.5, "Вес в рюкзаке", **top)
 plt.xlim(-8, k)
 plt.ylim(-1, 2)
 

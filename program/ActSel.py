@@ -2,16 +2,22 @@ from random import randint
 import matplotlib.pyplot as plt
 
 
-def plot_segments(s, sol, c1, c2, k, coef):
-    plt.xlabel('Номер отрезка')
-    plt.ylabel('Значение')
+def plot_segments(s, sol):
+    plt.xlabel('Координаты')
+    plt.ylabel('Отрезки')
+    k = 40
     for i in s:
+
         d1 = [k, k]
-        plt.plot(i, d1, color=c1, linewidth=10, solid_capstyle='butt')
-        k -= coef
+        plt.plot(i, d1, color="blue", linewidth=10, solid_capstyle='butt')
+        k -= 10
     d2 = [50, 50]
     for k in range(len(sol)):
-        plt.plot(sol[k], d2, color=c2, linewidth=10, solid_capstyle='butt')
+        plt.plot(sol[k], d2, color="red", linewidth=10, solid_capstyle='butt')
+    # Убрать ось y
+    ax = plt.gca()
+    ax.set_yticks([])
+
 
 def actsel1(s):
     solution = []
@@ -42,18 +48,20 @@ s = [[a, randint(a+1, 1100)] for a in (randint(0, 1000) for _ in range(20))]
 cps = s.copy()
 
 plt.figure(1)
+plt.title("графическое представление решения обычного алгоритма")
 print("Массив отрезков: ", s)
 sol = actsel1(s)
 s = cps.copy()
 print("\nНепересекающиеся отрезки: ", sol)
-plot_segments(s, sol, "blue", "red", 40, 10)
+plot_segments(s, sol)
 
 print("\n\t\t-------------------------\t\t\n")
 s = cps.copy()
 plt.figure(2)
+plt.title("графическое представление решения улучшенного алгоритма")
 sol = actsel2(s)
 print("Массив сортированных отрезков: ", s)
 print("\nНепересекающиеся сортированные отрезки: ", sol)
-plot_segments(s, sol, "blue", "red", 40, 10)
+plot_segments(s, sol)
 
 plt.show()

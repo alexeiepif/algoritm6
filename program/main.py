@@ -2,13 +2,17 @@ import random as rnd
 import matplotlib.pyplot as plt
 
 
-def plot_segments(point, s, k, coef):
+def plot_segments(point, s):
+    plt.xlabel('Координаты')
+    plt.title("Графическое представление")
     for i in s:
-        d = [k, k]
+        d = [0, 0]
         plt.plot(i, d, color="blue", linewidth=40, solid_capstyle='butt')
-        k += coef
     plt.plot(point, [0 for _ in range(len(point))], linestyle='None',
              marker='|', markersize=60, color="red")
+    # Убрать ось y
+    ax = plt.gca()
+    ax.set_yticks([])
     plt.show()
 
 
@@ -42,9 +46,15 @@ def pointscover2(s):
 s = [rnd.randint(0, 100)/10 for i in range(20)]
 s2 = s.copy()
 print("Множество точек:", s)
+
 seg = pointscover1(s)
-print("Множество отрезков:", seg)
+print("Множество отрезков 1:", seg)
+
 s = s2
 seg = pointscover2(s)
 print("Множество отрезков 2:", seg)
-plot_segments(s2, seg, 0, 0)
+
+print("Минимальное количество отрезков, \
+которыми можно покрыть данное множество точек = ", len(seg))
+
+plot_segments(s2, seg)

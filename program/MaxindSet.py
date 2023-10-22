@@ -96,7 +96,7 @@ def maxindependentset(tree):
     return leaves
 
 
-tree = generate_random_tree(8, 4)
+tree = generate_random_tree(5, 4)
 print_tree(tree)
 print("\n\n", maxindependentset(tree))
 print_tree(tree)
