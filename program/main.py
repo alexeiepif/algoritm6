@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 import random as rnd
 import matplotlib.pyplot as plt
 
@@ -43,18 +46,19 @@ def pointscover2(s):
     return segment
 
 
-s = [rnd.randint(0, 100)/10 for i in range(20)]
-s2 = s.copy()
-print("Множество точек:", s)
+if __name__ == '__main__':
+    s = [rnd.randint(0, 100)/10 for i in range(20)]
+    s2 = s.copy()
+    print("Множество точек:", s)
 
-seg = pointscover1(s)
-print("Множество отрезков 1:", seg)
+    seg = pointscover1(s)
+    print("Множество отрезков 1:", seg)
 
-s = s2
-seg = pointscover2(s)
-print("Множество отрезков 2:", seg)
+    s = s2
+    seg = pointscover2(s)
+    print("Множество отрезков 2:", seg)
 
-print("Минимальное количество отрезков, \
-которыми можно покрыть данное множество точек = ", len(seg))
+    print("Минимальное количество отрезков, \
+    которыми можно покрыть данное множество точек = ", len(seg))
 
-plot_segments(s2, seg)
+    plot_segments(s2, seg)

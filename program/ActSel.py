@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 from random import randint
 import matplotlib.pyplot as plt
 
@@ -44,24 +47,26 @@ def actsel2(s):
     return solution
 
 
-s = [[a, randint(a+1, 1100)] for a in (randint(0, 1000) for _ in range(20))]
-cps = s.copy()
+if __name__ == '__main__':
+    s = [[a, randint(a+1, 1100)]
+         for a in (randint(0, 1000) for _ in range(20))]
+    cps = s.copy()
 
-plt.figure(1)
-plt.title("графическое представление решения обычного алгоритма")
-print("Массив отрезков: ", s)
-sol = actsel1(s)
-s = cps.copy()
-print("\nНепересекающиеся отрезки: ", sol)
-plot_segments(s, sol)
+    plt.figure(1)
+    plt.title("графическое представление решения обычного алгоритма")
+    print("Массив отрезков: ", s)
+    sol = actsel1(s)
+    s = cps.copy()
+    print("\nНепересекающиеся отрезки: ", sol)
+    plot_segments(s, sol)
 
-print("\n\t\t-------------------------\t\t\n")
-s = cps.copy()
-plt.figure(2)
-plt.title("графическое представление решения улучшенного алгоритма")
-sol = actsel2(s)
-print("Массив сортированных отрезков: ", s)
-print("\nНепересекающиеся сортированные отрезки: ", sol)
-plot_segments(s, sol)
+    print("\n\t\t-------------------------\t\t\n")
+    s = cps.copy()
+    plt.figure(2)
+    plt.title("графическое представление решения улучшенного алгоритма")
+    sol = actsel2(s)
+    print("Массив сортированных отрезков: ", s)
+    print("\nНепересекающиеся сортированные отрезки: ", sol)
+    plot_segments(s, sol)
 
-plt.show()
+    plt.show()

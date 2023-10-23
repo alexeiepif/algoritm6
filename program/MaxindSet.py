@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 import random
 
 
@@ -96,7 +99,8 @@ def maxindependentset(tree):
     return leaves
 
 
-tree = generate_random_tree(5, 4)
-print_tree(tree)
-print("\n\n", maxindependentset(tree))
-print_tree(tree)
+if __name__ == '__main__':
+    tree = generate_random_tree(5, 4)
+    print_tree(tree)
+    print("\n\n", maxindependentset(tree))
+    print_tree(tree)
